@@ -32,7 +32,7 @@
             <ItemTemplate>
                 <tr id="Tr1" runat="server">                    
                     <td>
-                        <asp:HyperLink ID="HyperLink1" NavigateUrl='<%# "~/Admin/Domain.aspx?ID=" + Eval("ID") %>'
+                        <asp:HyperLink ID="HyperLink1" NavigateUrl='<%# "~/Admin/Account.aspx?Address=" + Eval("Address") %>'
                             Text='<%# Eval("Address") %>' runat="server" />
                     </td>
                 </tr>

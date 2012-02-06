@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Application : MarshalByRefObject, IApplication
+    public class Application : MarshalByRefObject
     {
         hMailServer.Application _object;
         bool Authed;
@@ -76,33 +76,5 @@ namespace hMailServerNetRemote
                 return Authed;
             }
         }
-    }
-
-    public interface IApplication
-    {
-
-         Account Authenticate(string Username, string Password);
-         void Connect();
-       
-         void Reinitialize();
-        
-         void Start();
-         void Stop();
-         void SubmitEMail();
-         Domains Domains
-         {
-             get;
-         }
-
-         string Version
-         {
-             get;
-         }
-
-         bool Authenticated
-         {
-             get;
-         }
-        
     }
 }

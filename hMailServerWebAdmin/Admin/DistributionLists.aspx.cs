@@ -13,7 +13,7 @@ namespace hMailServerWebAdmin.Admin
         {
             if (!IsPostBack)
             {
-                hMailServerNetRemote.IApplication app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
+                hMailServerNetRemote.Application app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
                 if (app == null)
                     Response.End();
 
