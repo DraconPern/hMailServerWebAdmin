@@ -18,23 +18,7 @@ namespace hMailServerWebAdmin
         //
 
         private int newPasswordLength = 8;
-        private string eventSource = "hMailServerMembershipProvider";
-        private string eventLog = "Application";
         private string exceptionMessage = "An exception occurred. Please check the Event Log.";
-
-        //
-        // If false, exceptions are thrown to the caller. If true,
-        // exceptions are written to the event log.
-        //
-
-        private bool pWriteExceptionsToEventLog;
-
-        public bool WriteExceptionsToEventLog
-        {
-            get { return pWriteExceptionsToEventLog; }
-            set { pWriteExceptionsToEventLog = value; }
-        }
-
 
         //
         // System.Configuration.Provider.ProviderBase.Initialize Method
@@ -70,8 +54,7 @@ namespace hMailServerWebAdmin
             pEnablePasswordReset = Convert.ToBoolean(GetConfigValue(config["enablePasswordReset"], "true"));
             pEnablePasswordRetrieval = false;
             pRequiresQuestionAndAnswer = false;
-            pRequiresUniqueEmail = true;
-            pWriteExceptionsToEventLog = Convert.ToBoolean(GetConfigValue(config["writeExceptionsToEventLog"], "true"));
+            pRequiresUniqueEmail = true;            
 
             string temp_format = GetConfigValue(config["passwordFormat"], "Hashed");
             switch (temp_format)
@@ -493,35 +476,17 @@ namespace hMailServerWebAdmin
         {
             bool isValid = false;
 
-            try
-            {
-                hMailServerNetRemote.Application app = RemoteActivation.GetRemotehMailServerApplication();
-                hMailServerNetRemote.Account account = app.Authenticate(username, password);
 
-                if (account != null)
-                {
-                    isValid = true;
-                }
-                else
-                {
-                    UpdateFailureCount(username, "password");
-                }
-            }
-            catch (Exception e)
-            {
-                if (WriteExceptionsToEventLog)
-                {
-                    WriteToEventLog(e, "ValidateUser");
+            hMailServerNetRemote.Application app = RemoteActivation.GetRemotehMailServerApplication();
+            hMailServerNetRemote.Account account = app.Authenticate(username, password);
 
-                    throw new ProviderException(exceptionMessage);
-                }
-                else
-                {
-                    throw e;
-                }
-            }
-            finally
+            if (account != null)
             {
+                isValid = true;
+            }
+            else
+            {
+                UpdateFailureCount(username, "password");
             }
 
             return isValid;
@@ -555,30 +520,7 @@ namespace hMailServerWebAdmin
         public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
         {
             throw new ProviderException("FindUsersByEmail not implemented.");
-        }
-
-        //
-        // WriteToEventLog
-        //   A helper function that writes exception detail to the event log. Exceptions
-        // are written to the event log as a security measure to avoid private database
-        // details from being returned to the browser. If a method does not return a status
-        // or boolean indicating the action succeeded or failed, a generic exception is also 
-        // thrown by the caller.
-        //
-
-        private void WriteToEventLog(Exception e, string action)
-        {
-            EventLog log = new EventLog();
-            log.Source = eventSource;
-            log.Log = eventLog;
-
-            string message = "An exception occurred communicating with the data source.\n\n";
-            message += "Action: " + action + "\n\n";
-            message += "Exception: " + e.ToString();
-
-            log.WriteEntry(message);
-        }
-
+        }        
     }
 
 }

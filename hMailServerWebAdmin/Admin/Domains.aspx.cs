@@ -18,7 +18,6 @@ namespace hMailServerWebAdmin.Admin
                 hMailServerNetRemote.Application app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
                 if (app == null)
                     Response.End();
-
                 List<hMailServerNetRemote.Domain> domains = new List<hMailServerNetRemote.Domain>();
                 int c = app.Domains.Count;
                 hMailServerNetRemote.Domains ds = app.Domains;

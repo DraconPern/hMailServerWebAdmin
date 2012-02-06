@@ -75,6 +75,7 @@ namespace hMailServerWebAdmin
 
             return app;
         }
+
         public static Application GetLocalhMailServerApplication()
         {
             hMailServerNetRemote.ClassFactory cf = new ClassFactory();
