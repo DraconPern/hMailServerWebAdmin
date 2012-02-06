@@ -13,5 +13,10 @@ namespace hMailServerWebAdmin
         {
 
         }
+
+        protected void HeadLoginStatus_LoggedOut(object sender, EventArgs e)
+        {
+            HttpContext.Current.Session["hMailServerNetRemoteApplication"] = null;
+        }
     }
 }

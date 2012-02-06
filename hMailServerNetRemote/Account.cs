@@ -44,6 +44,10 @@ namespace hMailServerNetRemote
             {
                 return _object.Active;
             }
+            set
+            {
+                _object.Active = value;
+            }
         }
 
         public string ADDomain

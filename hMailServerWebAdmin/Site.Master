@@ -4,61 +4,127 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
     <title></title>
-    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+    <!--[if lt IE 9]>
+	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <script src="<%=ResolveClientUrl("~/js/jquery-1.5.2.min.js")%>" type="text/javascript"></script>
+    <script src="<%=ResolveClientUrl("~/js/hideshow.js")%>" type="text/javascript"></script>
+    <script src="<%=ResolveClientUrl("~/js/jquery.tablesorter.min.js")%>" type="text/javascript"></script>
+    <script src="<%=ResolveClientUrl("~/js/jquery.equalHeight.js")%>" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tablesorter").tablesorter();
+        }
+	);
+        $(document).ready(function () {
+
+            //When page loads...
+            $(".tab_content").hide(); //Hide all content
+            $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+            $(".tab_content:first").show(); //Show first tab content
+
+            //On Click Event
+            $("ul.tabs li").click(function () {
+
+                $("ul.tabs li").removeClass("active"); //Remove any "active" class
+                $(this).addClass("active"); //Add "active" class to selected tab
+                $(".tab_content").hide(); //Hide all tab content
+
+                var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+                $(activeTab).fadeIn(); //Fade in the active ID content
+                return false;
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('.column').equalHeight();
+        });
+    </script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form runat="server">
-    <div class="page">
-        <div class="header">
-            <div class="title">
-                <h1>
-                    My ASP.NET Application
-                </h1>
-            </div>
-            <div class="loginDisplay">
-                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
-                    <AnonymousTemplate>
-                        [ <a href="~/Account/Login.aspx" id="HeadLoginStatus" runat="server">Log In</a>
-                        ]
-                    </AnonymousTemplate>
-                    <LoggedInTemplate>
-                        Welcome <span class="bold">
-                            <asp:LoginName ID="HeadLoginName" runat="server" />
-                        </span>! [
-                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
-                            LogoutPageUrl="~/" />
-                        ]
-                    </LoggedInTemplate>
-                </asp:LoginView>
-            </div>
-            <div class="clear hideSkiplink">
-                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false"
-                    IncludeStyleBlock="false" Orientation="Horizontal">
-                    <Items>
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home" />
-                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About" />
-                    </Items>
-                </asp:Menu>
-            </div>
+    <header id="header">
+        <hgroup>
+            <h1 class="site_title">
+                <asp:hyperlink runat="server" NavigateUrl="~/" Text="hMailServer" /></h1>
+            <h2 class="section_title">
+                Dashboard</h2>
+        </hgroup>
+    </header>
+    <!-- end of header bar -->
+    <section id="secondary_bar">
+        <div class="user">
+            <p>
+                <asp:LoginName ID="HeadLoginName" runat="server"></asp:LoginName>
+            </p>
         </div>
-        <div style="position: absolute; width: 132px;">
-            <asp:treeView ID="Menu12" runat="server" CssClass="menu" EnableViewState="false" ImageSet="Faq">
-                <Nodes>
-                    <asp:TreeNode Text="asdf" />
-                    <asp:TreeNode Text="aasdfsfs"><asp:TreeNode Text="asdfd" /></asp:TreeNode>
-                </Nodes>
-            </asp:treeView>
+        <div class="breadcrumbs_container">
+            <article class="breadcrumbs">
+                <asp:SiteMapPath runat="server" SkipLinkText="">
+                    <NodeTemplate>
+                        <asp:HyperLink ID="Hyperlink2" runat="server" NavigateUrl='<%# Eval("url") %>' Text='<%# Eval("title") %>' />
+                    </NodeTemplate>
+                    <RootNodeTemplate>
+                        <asp:HyperLink ID="Hyperlink2" runat="server" NavigateUrl='<%# Eval("url") %>' Text='<%# Eval("title") %>' /></RootNodeTemplate>
+                    <CurrentNodeTemplate>
+                        <asp:HyperLink runat="server" NavigateUrl='<%# Eval("url") %>' Text='<%# Eval("title") %>'
+                            CssClass="current" />
+                    </CurrentNodeTemplate>
+                    <PathSeparatorTemplate>
+                        <div class="breadcrumb_divider">
+                        </div>
+                    </PathSeparatorTemplate>
+                </asp:SiteMapPath>
+            </article>
         </div>
-        <div class="main" style="margin-left: 212px">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-        </div>
+    </section>
+    <!-- end of secondary bar -->
+    <aside id="sidebar" class="column">
+        <!-- 
+		<h3>Account</h3>
+		<ul class="toggle">
+			<li class="icn_new_article"><a href="#">General</a></li>
+			<li class="icn_edit_article"><a href="#">Auto-Reply</a></li>
+			<li class="icn_categories"><a href="#">Forwarding</a></li>
+			<li class="icn_tags"><a href="#">Signature</a></li>
+			<li class="icn_tags"><a href="#">Rules</a></li>
+			<li class="icn_tags"><a href="#">Advanced</a></li>
+		</ul>
+         -->
+        <hr />
+        <h3>
+            <asp:HyperLink NavigateUrl="~/Admin/Default.aspx" runat="server">Status</asp:HyperLink></h3>
+        <h3>
+            <asp:HyperLink NavigateUrl="~/Admin/Domains.aspx" runat="server">Domains</asp:HyperLink></h3>
+        <h3>
+            <asp:hyperlink runat="server" NavigateUrl="~/About.aspx" Text="About" />
+        </h3>
+        <h3>
+            <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
+                LogoutPageUrl="~/" />
+        </h3>
         <div class="clear">
         </div>
-    </div>
-    <div class="footer">
-    </div>
+        <footer>
+            <hr />
+            <p>
+                <strong>Copyright &copy; 2012 Ing-Long Eric Kuo</strong></p>
+            <p>
+                Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
+        </footer>
+    </aside>
+    <!-- end of sidebar -->
+    <section id="main" class="column">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        <div class="spacer">
+        </div>
+    </section>
     </form>
 </body>
 </html>

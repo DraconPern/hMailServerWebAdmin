@@ -75,5 +75,18 @@ namespace hMailServerNetRemote
             }
         }
 
+        //
+
+        public List<Domain> ToList()
+        {
+            List<Domain> domains = new List<Domain>();
+            for (int i = 0; i < _object.Count; i++)
+            {
+                domains.Add(this[i]);
+            }
+
+            return domains;
+        }
+
     }
 }
