@@ -4,11 +4,18 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <h2>
-        About
-    </h2>
-    <p>
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        Put content here.
-    </p>
+    <article class="module width_full">
+        <header>
+            <h3>
+                About</h3>
+        </header>
+        <div class="module_content">
+            <p>
+                hMailServerWebAdmin (c) 2012 Ing-Long Eric Kuo
+            </p>
+            <p>
+                <a href="https://github.com/DraconPern/hMailServerWebAdmin">Github</a>
+            </p>
+        </div>
+    </article>
 </asp:Content>
