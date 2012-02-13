@@ -11,7 +11,7 @@ namespace hMailServerWebAdmin.Examples
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            hMailServerNetRemote.ClassFactory cf = RemoteActivation.GetRemoteClassFactory("http://216.167.175.124/hMailServerWebAdmin/");
+            hMailServerNetRemote.IClassFactory cf = RemoteActivation.GetRemoteClassFactory("http://216.167.175.124/hMailServerWebAdmin/");
 
             hMailServerNetRemote.IApplication application;
             if (Session["hMailServerNetRemoteApplication"] == null)

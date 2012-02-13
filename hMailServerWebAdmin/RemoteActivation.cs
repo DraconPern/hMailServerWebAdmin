@@ -11,7 +11,7 @@ namespace hMailServerWebAdmin
 {
     public class RemoteActivation
     {
-        public static ClassFactory GetRemoteClassFactory()
+        public static IClassFactory GetRemoteClassFactory()
         {
             string url = Properties.Settings.Default.hMailServerWebAdminRemoteUrl;
             if (url.Length == 0)
@@ -33,7 +33,7 @@ namespace hMailServerWebAdmin
             return cf;
         }
 
-        public static ClassFactory GetRemoteClassFactory(string hMailServerWebAdminRemoteUrl)
+        public static IClassFactory GetRemoteClassFactory(string hMailServerWebAdminRemoteUrl)
         {
             string url = hMailServerWebAdminRemoteUrl;
             if (!url.EndsWith("/"))
@@ -47,7 +47,7 @@ namespace hMailServerWebAdmin
 
         public static IApplication GetRemotehMailServerApplication()
         {
-            hMailServerNetRemote.ClassFactory cf = RemoteActivation.GetRemoteClassFactory();
+            hMailServerNetRemote.IClassFactory cf = RemoteActivation.GetRemoteClassFactory();
 
             hMailServerNetRemote.IApplication app;
             if (HttpContext.Current.Session["hMailServerNetRemoteApplication"] == null)
