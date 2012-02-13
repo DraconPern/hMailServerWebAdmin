@@ -13,16 +13,16 @@ namespace hMailServerWebAdmin.Admin
         {
             if (!IsPostBack)
             {
-                hMailServerNetRemote.Application app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
+                hMailServerNetRemote.IApplication app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
                 if (app == null)
                     Response.End();
 
-                hMailServerNetRemote.Domain dom = app.Domains.ItemByDBID(Convert.ToInt32(Request.QueryString["ID"]));
+                hMailServerNetRemote.IDomain dom = app.Domains.ItemByDBID(Convert.ToInt32(Request.QueryString["ID"]));
 
                 DomainName.Text = dom.Name;
 
-                List<hMailServerNetRemote.DistributionList> dls = new List<hMailServerNetRemote.DistributionList>();
-                hMailServerNetRemote.DistributionLists d = dom.DistributionLists;
+                List<hMailServerNetRemote.IDistributionList> dls = new List<hMailServerNetRemote.IDistributionList>();
+                hMailServerNetRemote.IDistributionLists d = dom.DistributionLists;
                 int c = d.Count;
 
                 for (int i = 0; i < c; i++)

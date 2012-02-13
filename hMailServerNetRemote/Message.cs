@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Message : MarshalByRefObject
+    public class Message : MarshalByRefObject, IMessage
     {
         internal hMailServer.Message _object;
 
@@ -44,7 +44,7 @@ namespace hMailServerNetRemote
             _object.Save();
         }
 
-        public Attachments Attachments
+        public IAttachments Attachments
         {
             get
             {
@@ -124,7 +124,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public class MessageFlag
+        public class MessageFlag : IMessageFlag
         {
             internal hMailServer.Message _object;
             public MessageFlag(hMailServer.Message o)
@@ -132,20 +132,20 @@ namespace hMailServerNetRemote
                 _object = o;
             }
 
-            public bool this[hMailServer.eMessageFlag iType]
+            public bool this[eMessageFlag iType]
             {
                 get
                 {
-                    return _object.Flag[iType];
+                    return _object.Flag[(hMailServer.eMessageFlag) iType];
                 }
                 set
                 {
-                    _object.Flag[iType] = value;
+                    _object.Flag[(hMailServer.eMessageFlag) iType] = value;
                 }
             }
         }
 
-        public MessageFlag Flag
+        public IMessageFlag Flag
         {
             get
             {
@@ -177,7 +177,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public MessageHeaders Headers
+        public IMessageHeaders Headers
         {
             get
             {
@@ -185,7 +185,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public class MessageHeaderValue
+        public class MessageHeaderValue : IMessageHeaderValue
         {
             internal hMailServer.Message _object;
             public MessageHeaderValue(hMailServer.Message o)
@@ -206,7 +206,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public MessageHeaderValue HeaderValue
+        public IMessageHeaderValue HeaderValue
         {
             get
             {
@@ -242,7 +242,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Recipients Recipients
+        public IRecipients Recipients
         {
             get
             {
@@ -283,7 +283,7 @@ namespace hMailServerNetRemote
             get
             {
                 return _object.To;
-            }            
+            }
         }
 
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Messages : MarshalByRefObject
+    public class Messages : MarshalByRefObject, IMessages
     {
         internal hMailServer.Messages _object;
 
@@ -18,7 +18,7 @@ namespace hMailServerNetRemote
             _object = o;
         }
 
-        public Message Add()
+        public IMessage Add()
         {
             return new Message(_object.Add());
         }
@@ -41,7 +41,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Message this[int index]
+        public IMessage this[int index]
         {
             get
             {
@@ -49,7 +49,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Message ItemByDBID(int DBID)
+        public IMessage ItemByDBID(int DBID)
         {
             return new Message(_object.ItemByDBID[DBID]);
         }

@@ -29,9 +29,9 @@ namespace hMailServerWebAdmin.Examples
 
             // You can do it like VB, but let's do it the C# way. :)
             // hMailServerNetRemote.Domain domain = application.Domains.ItemByName("example.com");
-            hMailServerNetRemote.Domain domain = application.Domains["example.com"];
+            hMailServerNetRemote.IDomain domain = application.Domains["example.com"];
 
-            hMailServerNetRemote.Account account = domain.Accounts.Add();
+            hMailServerNetRemote.IAccount account = domain.Accounts.Add();
             account.Address = "account@example.com";
             account.Password = "secret";
             account.Active = true;

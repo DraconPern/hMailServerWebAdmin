@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3F7C6C7C-382A-41D5-BEA1-896529AC2EA2}</ProjectGuid>
+    <ProjectGuid>{6C75BC63-D16E-48FF-A759-FCDC5F51480E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>hMailServerNetRemote</RootNamespace>
-    <AssemblyName>hMailServerNetRemote</AssemblyName>
+    <RootNamespace>hMailServerNetRemoteClientInterface</RootNamespace>
+    <AssemblyName>hMailServerNetRemoteClientInterface</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,59 +41,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="Application.cs" />
-    <Compile Include="ClassFactory.cs" />
     <Compile Include="Accounts.cs" />
-    <Compile Include="Aliases.cs" />
     <Compile Include="Alias.cs" />
+    <Compile Include="Aliases.cs" />
+    <Compile Include="Application.cs" />
     <Compile Include="Attachment.cs" />
     <Compile Include="Attachments.cs" />
-    <Compile Include="MessageHeader.cs" />
-    <Compile Include="MessageHeaders.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Recipient.cs" />
-    <Compile Include="Recipients.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="Messages.cs" />
-    <Compile Include="IMAPFolder.cs" />
-    <Compile Include="IMAPFolders.cs" />
-    <Compile Include="DomainAlias.cs" />
-    <Compile Include="DomainAliases.cs" />
+    <Compile Include="DistributionList.cs" />
     <Compile Include="DistributionListRecipient.cs" />
     <Compile Include="DistributionListRecipients.cs" />
-    <Compile Include="DistributionList.cs" />
     <Compile Include="DistributionLists.cs" />
     <Compile Include="Domain.cs" />
+    <Compile Include="DomainAlias.cs" />
+    <Compile Include="DomainAliases.cs" />
     <Compile Include="Domains.cs" />
+    <Compile Include="IMAPFolder.cs" />
+    <Compile Include="IMAPFolders.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="MessageHeader.cs" />
+    <Compile Include="MessageHeaders.cs" />
+    <Compile Include="Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="hMailServer">
-      <Guid>{DB241B59-A1B1-4C59-98FC-8D101A2995F2}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\hMailServerNetRemoteClientInterface\hMailServerNetRemoteClientInterface.csproj">
-      <Project>{6C75BC63-D16E-48FF-A759-FCDC5F51480E}</Project>
-      <Name>hMailServerNetRemoteClientInterface</Name>
-    </ProjectReference>
+    <Compile Include="Recipient.cs" />
+    <Compile Include="Recipients.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

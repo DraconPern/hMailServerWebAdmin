@@ -11,11 +11,11 @@ namespace hMailServerWebAdmin.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            hMailServerNetRemote.Application app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
+            hMailServerNetRemote.IApplication app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
             if (app == null)
                 Response.End();
 
-            hMailServerNetRemote.Domain dom = app.Domains.ItemByDBID(Convert.ToInt32(Request.QueryString["ID"]));
+            hMailServerNetRemote.IDomain dom = app.Domains.ItemByDBID(Convert.ToInt32(Request.QueryString["ID"]));
 
             if (!IsPostBack)            
             {

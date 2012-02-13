@@ -45,11 +45,11 @@ namespace hMailServerWebAdmin
             return cf;
         }
 
-        public static Application GetRemotehMailServerApplication()
+        public static IApplication GetRemotehMailServerApplication()
         {
             hMailServerNetRemote.ClassFactory cf = RemoteActivation.GetRemoteClassFactory();
 
-            hMailServerNetRemote.Application app;
+            hMailServerNetRemote.IApplication app;
             if (HttpContext.Current.Session["hMailServerNetRemoteApplication"] == null)
             {
                 app = cf.CreateApplication();
@@ -57,15 +57,15 @@ namespace hMailServerWebAdmin
             }
             else
             {
-                app = (hMailServerNetRemote.Application)HttpContext.Current.Session["hMailServerNetRemoteApplication"];
+                app = (hMailServerNetRemote.IApplication)HttpContext.Current.Session["hMailServerNetRemoteApplication"];
             }
                         
             return app;
         }
 
-        public static Application GetAuthenticatedRemotehMailServerApplication()
+        public static IApplication GetAuthenticatedRemotehMailServerApplication()
         {
-            hMailServerNetRemote.Application app = GetRemotehMailServerApplication();
+            hMailServerNetRemote.IApplication app = GetRemotehMailServerApplication();
             if (!app.Authenticated)
             {
                 FormsAuthentication.SignOut();
@@ -76,11 +76,11 @@ namespace hMailServerWebAdmin
             return app;
         }
 
-        public static Application GetLocalhMailServerApplication()
+        public static IApplication GetLocalhMailServerApplication()
         {
             hMailServerNetRemote.ClassFactory cf = new ClassFactory();
 
-            hMailServerNetRemote.Application app;
+            hMailServerNetRemote.IApplication app;
             if (HttpContext.Current.Session["hMailServerNetRemoteApplication"] == null)
             {
                 app = cf.CreateApplication();
@@ -88,7 +88,7 @@ namespace hMailServerWebAdmin
             }
             else
             {
-                app = (hMailServerNetRemote.Application)HttpContext.Current.Session["hMailServerNetRemoteApplication"];
+                app = (hMailServerNetRemote.IApplication)HttpContext.Current.Session["hMailServerNetRemoteApplication"];
             }
 
             return app;

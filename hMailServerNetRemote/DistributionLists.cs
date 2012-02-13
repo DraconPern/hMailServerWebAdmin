@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class DistributionLists : MarshalByRefObject
+    public class DistributionLists : MarshalByRefObject, IDistributionLists
     {
         internal hMailServer.DistributionLists _object;
 
@@ -18,7 +18,7 @@ namespace hMailServerNetRemote
             _object = o;
         }
 
-        public DistributionList Add()
+        public IDistributionList Add()
         {
             return new DistributionList(_object.Add());
         }
@@ -41,7 +41,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public DistributionList this[int index]
+        public IDistributionList this[int index]
         {
             get
             {
@@ -49,7 +49,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public DistributionList this[string ItemName]
+        public IDistributionList this[string ItemName]
         {
             get
             {
@@ -57,12 +57,12 @@ namespace hMailServerNetRemote
             }
         }
 
-        public DistributionList ItemByAddress(string ItemName)
+        public IDistributionList ItemByAddress(string ItemName)
         {
             return new DistributionList(_object.ItemByAddress[ItemName]);            
         }
 
-        public DistributionList ItemByDBID(int DBID)
+        public IDistributionList ItemByDBID(int DBID)
         {
             return new DistributionList(_object.ItemByDBID[DBID]);            
         }        

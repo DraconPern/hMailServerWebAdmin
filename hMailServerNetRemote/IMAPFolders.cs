@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class IMAPFolders : MarshalByRefObject
+    public class IMAPFolders : MarshalByRefObject, IIMAPFolders
     {
         internal hMailServer.IMAPFolders _object;
 
@@ -18,7 +18,7 @@ namespace hMailServerNetRemote
             _object = o;
         }
 
-        public IMAPFolder Add(string sName)
+        public IIMAPFolder Add(string sName)
         {
             return new IMAPFolder(_object.Add(sName));
         }
@@ -36,7 +36,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public IMAPFolder this[int index]
+        public IIMAPFolder this[int index]
         {
             get
             {
@@ -44,7 +44,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public IMAPFolder this[string sName]
+        public IIMAPFolder this[string sName]
         {
             get
             {
@@ -52,12 +52,12 @@ namespace hMailServerNetRemote
             }
         }
 
-        public IMAPFolder ItemByName(string sName)
+        public IIMAPFolder ItemByName(string sName)
         {
             return new IMAPFolder(_object.ItemByName[sName]);
         }
 
-        public IMAPFolder ItemByDBID(int DBID)
+        public IIMAPFolder ItemByDBID(int DBID)
         {
             return new IMAPFolder(_object.ItemByDBID[DBID]);
         }

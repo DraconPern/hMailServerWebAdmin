@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class DomainAlias : MarshalByRefObject
+    public class DomainAlias : MarshalByRefObject, IDomainAlias
     {
         internal hMailServer.DomainAlias _object;
 

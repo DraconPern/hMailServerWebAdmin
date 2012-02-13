@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Accounts : MarshalByRefObject
+    public class Accounts : MarshalByRefObject, IAccounts
     {
         internal hMailServer.Accounts _object;
 
@@ -18,7 +18,7 @@ namespace hMailServerNetRemote
             _object = o;
         }
 
-        public Account Add()
+        public IAccount Add()
         {
             return new Account(_object.Add());
         }
@@ -46,7 +46,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Account this[int index]
+        public IAccount this[int index]
         {
             get
             {
@@ -54,7 +54,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Account this[string Address]
+        public IAccount this[string Address]
         {
             get
             {
@@ -62,12 +62,12 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Account ItemByAddress(string Address)
+        public IAccount ItemByAddress(string Address)
         {
             return new Account(_object.ItemByAddress[Address]);            
         }
 
-        public Account ItemByDBID(int DBID)
+        public IAccount ItemByDBID(int DBID)
         {
             return new Account(_object.ItemByDBID[DBID]);            
         }        

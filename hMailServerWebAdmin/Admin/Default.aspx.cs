@@ -11,7 +11,7 @@ namespace hMailServerWebAdmin.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            hMailServerNetRemote.Application app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
+            hMailServerNetRemote.IApplication app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
             if (app == null)
                 Response.End();
 

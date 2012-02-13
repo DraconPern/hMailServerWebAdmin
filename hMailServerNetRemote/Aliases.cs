@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Aliases : MarshalByRefObject
+    public class Aliases : MarshalByRefObject, IAliases
     {
         internal hMailServer.Aliases _object;
 
@@ -18,7 +18,7 @@ namespace hMailServerNetRemote
             _object = o;
         }
 
-        public Alias Add()
+        public IAlias Add()
         {
             return new Alias(_object.Add());
         }
@@ -46,7 +46,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Alias this[int index]
+        public IAlias this[int index]
         {
             get
             {
@@ -54,7 +54,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Alias this[string Name]
+        public IAlias this[string Name]
         {
             get
             {
@@ -62,12 +62,12 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Alias ItemByName(string Name)
+        public IAlias ItemByName(string Name)
         {
             return new Alias(_object.ItemByName[Name]);
         }
 
-        public Alias ItemByDBID(int DBID)
+        public IAlias ItemByDBID(int DBID)
         {
             return new Alias(_object.ItemByDBID[DBID]);
         }

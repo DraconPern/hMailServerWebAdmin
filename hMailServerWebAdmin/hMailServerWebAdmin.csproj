@@ -262,6 +262,10 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\hMailServerNetRemoteClientInterface\hMailServerNetRemoteClientInterface.csproj">
+      <Project>{6C75BC63-D16E-48FF-A759-FCDC5F51480E}</Project>
+      <Name>hMailServerNetRemoteClientInterface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\hMailServerNetRemote\hMailServerNetRemote.csproj">
       <Project>{3F7C6C7C-382A-41D5-BEA1-896529AC2EA2}</Project>
       <Name>hMailServerNetRemote</Name>

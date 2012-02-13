@@ -11,7 +11,7 @@ namespace hMailServerWebAdmin.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            hMailServerNetRemote.Application app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
+            hMailServerNetRemote.IApplication app = RemoteActivation.GetAuthenticatedRemotehMailServerApplication();
             if (app == null)
                 Response.End();
 
@@ -22,27 +22,27 @@ namespace hMailServerWebAdmin.Admin
                 Response.End();
             }
 
-            hMailServerNetRemote.Domain domain = app.Domains.ItemByName(sp[1]);
+            hMailServerNetRemote.IDomain domain = app.Domains.ItemByName(sp[1]);
             if (domain == null)
             {
                 Response.StatusCode = 404;
                 Response.End();
             }
 
-            hMailServerNetRemote.DistributionList ds = domain.DistributionLists.ItemByAddress(Request.QueryString["Address"]);
+            hMailServerNetRemote.IDistributionList ds = domain.DistributionLists.ItemByAddress(Request.QueryString["Address"]);
             if (ds == null)
             {
                 Response.StatusCode = 404;
                 Response.End();
             }
 
-            hMailServerNetRemote.DistributionListRecipients re = ds.Recipients;
+            hMailServerNetRemote.IDistributionListRecipients re = ds.Recipients;
 
             if (!IsPostBack)
             {
                 DistributionListName.Text = ds.Address;
 
-                List<hMailServerNetRemote.DistributionListRecipient> addys = new List<hMailServerNetRemote.DistributionListRecipient>();
+                List<hMailServerNetRemote.IDistributionListRecipient> addys = new List<hMailServerNetRemote.IDistributionListRecipient>();
                 int c = re.Count;                
                 for (int i = 0; i < c; i++)
                 {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Attachment : MarshalByRefObject
+    public class Attachment : MarshalByRefObject, IAttachment
     {
         internal hMailServer.Attachment _object;
 

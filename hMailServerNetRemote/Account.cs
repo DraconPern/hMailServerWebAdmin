@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Account : MarshalByRefObject
+    public class Account : MarshalByRefObject, IAccount
     {
         internal hMailServer.Account _object;
 
@@ -74,15 +74,15 @@ namespace hMailServerNetRemote
             }
         }
 
-        public hMailServer.eAdminLevel AdminLevel
+        public eAdminLevel AdminLevel
         {
             get
             {
-                return _object.AdminLevel;
+                return (eAdminLevel) _object.AdminLevel;
             }
             set
             {
-                _object.AdminLevel = value;
+                _object.AdminLevel = (hMailServer.eAdminLevel) value;
             }
         }
 
@@ -164,7 +164,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public IMAPFolders IMAPFolders
+        public IIMAPFolders IMAPFolders
         {
             get
             {
@@ -204,7 +204,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Messages Messages
+        public IMessages Messages
         {
             get
             {
@@ -384,4 +384,6 @@ namespace hMailServerNetRemote
             }
         }
     }
+
+    
 }

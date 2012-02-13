@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Application : MarshalByRefObject
+    public class Application : MarshalByRefObject, IApplication
     {
         hMailServer.Application _object;
         bool Authed;
@@ -16,7 +16,7 @@ namespace hMailServerNetRemote
             Authed = false;
         }
 
-        public Account Authenticate(string Username, string Password)
+        public IAccount Authenticate(string Username, string Password)
         {
             hMailServer.Account a = _object.Authenticate(Username, Password);
             if (a != null)
@@ -53,7 +53,7 @@ namespace hMailServerNetRemote
             _object.SubmitEMail();
         }
 
-        public Domains Domains
+        public IDomains Domains
         {
             get
             {

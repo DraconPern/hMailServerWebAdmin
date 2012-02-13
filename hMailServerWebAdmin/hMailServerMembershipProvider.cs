@@ -193,9 +193,9 @@ namespace hMailServerWebAdmin
             if (sp.Length != 2)
                 return false;
 
-            hMailServerNetRemote.Application app = RemoteActivation.GetRemotehMailServerApplication();
-            hMailServerNetRemote.Domain domain = app.Domains.ItemByName(sp[1]);
-            hMailServerNetRemote.Account account = domain.Accounts[username];
+            hMailServerNetRemote.IApplication app = RemoteActivation.GetRemotehMailServerApplication();
+            hMailServerNetRemote.IDomain domain = app.Domains.ItemByName(sp[1]);
+            hMailServerNetRemote.IAccount account = domain.Accounts[username];
             account.Password = newPwd;
             account.Save();
 
@@ -322,7 +322,7 @@ namespace hMailServerWebAdmin
 
         public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
         {
-            hMailServerNetRemote.Account account = GetAccount((string)providerUserKey);
+            hMailServerNetRemote.IAccount account = GetAccount((string)providerUserKey);
             if (account == null)
                 return null;
 
@@ -338,26 +338,26 @@ namespace hMailServerWebAdmin
         // MembershipUser.GetUser implementation.
         //
 
-        private hMailServerNetRemote.Account GetAccount(string email)
+        private hMailServerNetRemote.IAccount GetAccount(string email)
         {
-            hMailServerNetRemote.Application app = RemoteActivation.GetRemotehMailServerApplication();
+            hMailServerNetRemote.IApplication app = RemoteActivation.GetRemotehMailServerApplication();
             string[] sp = email.Split(new Char[] { '@' });
 
             if (sp.Length != 2)
                 return null;
 
-            hMailServerNetRemote.Domain domain = app.Domains.ItemByName(sp[1]);
+            hMailServerNetRemote.IDomain domain = app.Domains.ItemByName(sp[1]);
             if (domain == null)
                 return null;
 
-            hMailServerNetRemote.Account account = domain.Accounts.ItemByAddress(email);
+            hMailServerNetRemote.IAccount account = domain.Accounts.ItemByAddress(email);
             if (account == null)
                 return null;
 
             return account;
         }
 
-        private MembershipUser GetUserFromAccount(hMailServerNetRemote.Account account)
+        private MembershipUser GetUserFromAccount(hMailServerNetRemote.IAccount account)
         {
             string address = account.Address;
             object providerUserKey = address;
@@ -406,7 +406,7 @@ namespace hMailServerWebAdmin
 
         public override string GetUserNameByEmail(string email)
         {
-            hMailServerNetRemote.Account account = GetAccount(email);
+            hMailServerNetRemote.IAccount account = GetAccount(email);
             if (account == null)
                 return "";
 
@@ -446,7 +446,7 @@ namespace hMailServerWebAdmin
                 else
                     throw new MembershipPasswordException("Reset password canceled due to password validation failure.");
 
-            hMailServerNetRemote.Account account = GetAccount(username);
+            hMailServerNetRemote.IAccount account = GetAccount(username);
 
             if (account == null)
                 throw new ProviderException("Can't find user");
@@ -477,8 +477,8 @@ namespace hMailServerWebAdmin
             bool isValid = false;
 
 
-            hMailServerNetRemote.Application app = RemoteActivation.GetRemotehMailServerApplication();
-            hMailServerNetRemote.Account account = app.Authenticate(username, password);
+            hMailServerNetRemote.IApplication app = RemoteActivation.GetRemotehMailServerApplication();
+            hMailServerNetRemote.IAccount account = app.Authenticate(username, password);
 
             if (account != null)
             {

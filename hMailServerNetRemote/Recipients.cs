@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Recipients : MarshalByRefObject
+    public class Recipients : MarshalByRefObject, IRecipients
     {
         internal hMailServer.Recipients _object;
 
@@ -26,7 +26,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Recipient this[int index]
+        public IRecipient this[int index]
         {
             get
             {

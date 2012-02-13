@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class MessageHeaders : MarshalByRefObject
+    public class MessageHeaders : MarshalByRefObject, IMessageHeaders
     {
         internal hMailServer.MessageHeaders _object;
 
@@ -27,7 +27,7 @@ namespace hMailServerNetRemote
             }           
         }
 
-        public MessageHeader this[int index]
+        public IMessageHeader this[int index]
         {
             get
             {
@@ -35,7 +35,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public MessageHeader this[string Name]
+        public IMessageHeader this[string Name]
         {
             get
             {
@@ -43,7 +43,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public MessageHeader ItemByName(string Name)
+        public IMessageHeader ItemByName(string Name)
         {
             return new MessageHeader(_object.ItemByName[Name]);
         }        

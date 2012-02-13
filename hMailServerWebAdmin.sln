@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hMailServerWebAdmin", "hMai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hMailServerNetRemote", "hMailServerNetRemote\hMailServerNetRemote.csproj", "{3F7C6C7C-382A-41D5-BEA1-896529AC2EA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hMailServerNetRemoteClientInterface", "hMailServerNetRemoteClientInterface\hMailServerNetRemoteClientInterface.csproj", "{6C75BC63-D16E-48FF-A759-FCDC5F51480E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{3F7C6C7C-382A-41D5-BEA1-896529AC2EA2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3F7C6C7C-382A-41D5-BEA1-896529AC2EA2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3F7C6C7C-382A-41D5-BEA1-896529AC2EA2}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C75BC63-D16E-48FF-A759-FCDC5F51480E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

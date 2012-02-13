@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class MessageHeader : MarshalByRefObject
+    public class MessageHeader : MarshalByRefObject, IMessageHeader
     {
         internal hMailServer.MessageHeader _object;
 

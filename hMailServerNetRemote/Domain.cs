@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Domain : MarshalByRefObject
+    public class Domain : MarshalByRefObject, IDomain
     {
         internal hMailServer.Domain _object;
 
@@ -34,7 +34,7 @@ namespace hMailServerNetRemote
             _object.SynchronizeDirectory();
         }
 
-        public Accounts Accounts
+        public IAccounts Accounts
         {
             get
             {
@@ -90,7 +90,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Aliases Aliases
+        public IAliases Aliases
         {
             get
             {
@@ -119,7 +119,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public DistributionLists DistributionLists
+        public IDistributionLists DistributionLists
         {
             get
             {
@@ -127,7 +127,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public DomainAliases DomainAliases
+        public IDomainAliases DomainAliases
         {
             get
             {
@@ -323,15 +323,15 @@ namespace hMailServerNetRemote
             }
         }
 
-        public hMailServer.eDomainSignatureMethod SignatureMethod
+        public eDomainSignatureMethod SignatureMethod
         {
             get
             {
-                return _object.SignatureMethod;
+                return (eDomainSignatureMethod) _object.SignatureMethod;
             }
             set
             {
-                _object.SignatureMethod = value;
+                _object.SignatureMethod = (hMailServer.eDomainSignatureMethod) value;
             }
         }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class Domains : MarshalByRefObject
+    public class Domains : MarshalByRefObject, IDomains
     {
         internal hMailServer.Domains _object;
 
@@ -18,7 +18,7 @@ namespace hMailServerNetRemote
             _object = o;
         }
 
-        public Domain Add()
+        public IDomain Add()
         {
             return new Domain(_object.Add());
         }
@@ -41,7 +41,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Domain this[int index]
+        public IDomain this[int index]
         {
             get
             {
@@ -49,7 +49,7 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Domain this[string ItemName]
+        public IDomain this[string ItemName]
         {
             get
             {
@@ -57,12 +57,12 @@ namespace hMailServerNetRemote
             }
         }
 
-        public Domain ItemByName(string ItemName)
+        public IDomain ItemByName(string ItemName)
         {
             return new Domain(_object.ItemByName[ItemName]);            
         }
 
-        public Domain ItemByDBID(int DBID)
+        public IDomain ItemByDBID(int DBID)
         {
             return new Domain(_object.ItemByDBID[DBID]);            
         }
@@ -77,9 +77,9 @@ namespace hMailServerNetRemote
 
         //
 
-        public List<Domain> ToList()
+        public List<IDomain> ToList()
         {
-            List<Domain> domains = new List<Domain>();
+            List<IDomain> domains = new List<IDomain>();
             for (int i = 0; i < _object.Count; i++)
             {
                 domains.Add(this[i]);
