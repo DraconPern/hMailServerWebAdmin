@@ -5,16 +5,9 @@ using System.Text;
 
 namespace hMailServerNetRemote
 {
-    public class ClassFactory : MarshalByRefObject
+    public interface IClassFactory
     {
-        public Application CreateApplication()
-        {
-            return new Application();
-        }
-
-        public Message CreateMessage()
-        {
-            return new Message();
-        } 
+        IApplication CreateApplication();
+        IMessage CreateMessage();
     }
 }

@@ -13,7 +13,7 @@ namespace hMailServerWebAdmin.Examples
         {
             hMailServerNetRemote.ClassFactory cf = RemoteActivation.GetRemoteClassFactory("http://216.167.175.124/hMailServerWebAdmin/");
 
-            hMailServerNetRemote.Application application;
+            hMailServerNetRemote.IApplication application;
             if (Session["hMailServerNetRemoteApplication"] == null)
             {
                 application = cf.CreateApplication();
